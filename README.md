@@ -13,5 +13,4 @@ Through an interactive menu, the program allows you to:
 - Save the current list in a CSV file
 - Add to or replace the current list by loading from a CSV file
 
-The file `fields.csv` can be edited to change what data is required for each student in
-`@students_data_fields`
+The file `fields.csv` can be edited to change what data is required for each student.
