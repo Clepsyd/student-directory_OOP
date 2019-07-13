@@ -40,7 +40,6 @@ class Student_list
          memo
       }
       @list << Student.new(studentinfo)
-      p Student.new(studentinfo)
     }
   end
 
