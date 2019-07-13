@@ -37,7 +37,18 @@ def show
   puts "How many fields would you like to see for each student?"
   puts "Leave field empty to only show the names."
   depth = gets.strip.to_i
-  @students.show(depth)
+  if @students.get_list.empty?
+    empty_list_message
+  else
+    @students.show(depth)
+  end
+end
+
+def empty_list_message
+  puts "There isn't any student in this directory at the moment."
+  puts "In the main menu:"
+  puts " - 1 to add a student"
+  puts " - 5 to load an existing list"
 end
 
 def save
