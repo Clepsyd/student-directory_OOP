@@ -66,16 +66,20 @@ def load
   puts "Type the name of the file you would like to load. (extension .csv not required)"
   filename = "#{gets.strip}.csv"
   if File.exist?(filename)
-    puts "Would you like to add to the current list (a), or overwrite it (w)?"
-    mode = gets.strip
-    if mode != "w" && mode != "a"
-      puts "Sorry only 'a' or 'w' are valid answers. Aborting loading."
-    else 
-      @students.load(filename, mode)
-      puts "#{filename} loaded #{@students.count} students into the current list"
-    end
+    load_file_exists(filename)
   else
     puts "This file does not exist, loading failed."
+  end
+end
+
+def load_file_exists(filename)
+  puts "Would you like to add to the current list (a), or overwrite it (w)?"
+  mode = gets.strip
+  if mode != "w" && mode != "a"
+    puts "Sorry only 'a' or 'w' are valid answers. Aborting loading."
+  else 
+    @students.load(filename, mode)
+    puts "#{filename} loaded #{@students.count} students into the current list"
   end
 end
 
