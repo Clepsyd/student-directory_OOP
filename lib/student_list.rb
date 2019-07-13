@@ -15,7 +15,7 @@ class Student_list
   end
 
   def remove(student)
-    @list.pop(student)
+    @list.delete(student)
   end
 
   def save(filename)

@@ -9,24 +9,27 @@ require './lib/student_list'
 # Fetch data fields for students from fields.csv, convert them to symbols.
 @students_data_fields = CSV.read('./lib/fields.csv').flatten
 @students_data_fields.map! { |field| field.to_sym }
-p @students_data_fields
 
 def add
   student = Student.new
   @students_data_fields.each { |field|
     puts "Please enter the student's #{field}"
     student.add_info(field, STDIN.gets.strip)
+    system("clear") || system("cls")
   }
   @students.add(student)
+  puts "#{student.info[:name]} added to the directory"
 end
 
 def remove
   puts "Which student would you like removed from the list?"
-  student = @students.get_list.select {|student| student.name}.first
-  if student.empty?
+  name = gets.strip
+  student = @students.get_list.select {|student| student.info[:name] == name}.first
+  if !student
     puts "Sorry, we could not find this name in our records"
   else
-    @students.delete(student) 
+    @students.remove(student) 
+    puts "#{student.info[:name]} deleted from repository"
   end
 end
 
@@ -83,6 +86,11 @@ menu_entries.each {|entry|
 }
 
 loop do
+  puts "Press enter to go to the menu..."
+  gets
+  system("clear") || system("cls")
   menu.show
-  menu.launch(gets.strip.to_i)
+  input = gets.strip.to_i
+  system("clear") || system("cls")
+  menu.launch(input)
 end
