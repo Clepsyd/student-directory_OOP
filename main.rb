@@ -1,3 +1,4 @@
+require 'csv'
 require './lib/menu'
 require './lib/student'
 require './lib/student_list'
@@ -5,14 +6,10 @@ require './lib/student_list'
 # Initialize list of students
 @students = Student_list.new
 
-# Add elements to this list if more informations are required
-@students_data_fields = [
-  :name,
-  :cohort,
-  :age,
-  :city,
-  :hobbies
-]
+# Fetch data fields for students from fields.csv, convert them to symbols.
+@students_data_fields = CSV.read('./lib/fields.csv').flatten
+@students_data_fields.map! { |field| field.to_sym }
+p @students_data_fields
 
 def add
   student = Student.new

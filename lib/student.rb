@@ -2,8 +2,8 @@ class Student
   
   attr_reader :info
 
-  def initialize(hash)
-    @info = hash ? hash : Hash.new()
+  def initialize(hash= Hash.new())
+    @info = hash
   end
 
   def add_info(key, value)
