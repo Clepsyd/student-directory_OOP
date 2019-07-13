@@ -33,7 +33,14 @@ class Student_list
       raise "Invalid value #{mode} for parameter mode of instance method load"
     end
     CSV.foreach(filename) { |line|
-      @list <<  Student.new(Hash[*line])
+      studentinfo = Hash[*line]
+      # Convert keys to symbols
+      studentinfo = studentinfo.inject({}){|memo,(k,v)|
+         memo[k.to_sym] = v
+         memo
+      }
+      @list << Student.new(studentinfo)
+      p Student.new(studentinfo)
     }
   end
 
